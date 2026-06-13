@@ -19,16 +19,24 @@ def main():
 
         match user_choice:
             case 1:
-                pass
+                print("\n")
+                title = input("Enter the task title : ")
+                description = input("Enter the task description : ")
+                task_manager.add_task(title, description)
 
             case 2:
-                pass
+                print("\n")
+                title = input("Enter the task title : ")
+                task_manager.mark_tasks(title)
 
             case 3:
-                pass
+                print("\n")
+                task_manager.view_tasks()
 
             case 4:
-                pass
+                print("\n")
+                title = input("Enter the task title : ")
+                task_manager.delete_task(title)
 
             case 5:
                 print("Goodbye ! ")

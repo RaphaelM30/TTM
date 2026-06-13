@@ -20,7 +20,7 @@ class TaskManager:
 
     def view_tasks(self):
         if self.tasks:
-            print("Tasks : \n")
+            print("Tasks :")
             for i, task in enumerate(self.tasks, start=1):
                 print(
                     f"{i}. Title : {task.title}, Description : {task.description}, Status : {task.status}"
