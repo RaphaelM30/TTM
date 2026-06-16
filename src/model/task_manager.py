@@ -19,10 +19,11 @@ class TaskManager:
         Returns:
             str: The title of the added task
         """
-        task = Task(title, description, status="Incomplete")
-        self.tasks.append(task)
-        self.data_manager.save_data(self.tasks)
-        return title
+        if title and description:
+            task = Task(title, description, status="Incomplete")
+            self.tasks.append(task)
+            self.data_manager.save_data(self.tasks)
+            return title
 
     def delete_task(self, title) -> bool:
         """Function to delete a task from the task manager.
@@ -33,6 +34,7 @@ class TaskManager:
         Returns:
             bool: True if the task was deleted, False otherwise
         """
+
         for task in self.tasks:
             if task.title == title:
                 self.tasks.remove(task)
@@ -49,6 +51,7 @@ class TaskManager:
         Returns:
             bool: True if the task was marked as complete, False otherwise
         """
+
         for task in self.tasks:
             if task.title == title:
                 task.mark_tasks_complete()
