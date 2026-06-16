@@ -1,25 +1,57 @@
 from .task import Task
+from .data.data_manager import DataManager
 
 
 class TaskManager:
-    def __init__(self):
-        self.tasks = []
+    """Manages a collection of tasks, allowing for adding, deleting, and marking tasks as complete."""
 
-    def add_task(self, title, description):
+    def __init__(self):
+        self.tasks = DataManager("src/model/data/database.json").load_data()
+        self.data_manager = DataManager("src/model/data/database.json")
+
+    def add_task(self, title, description) -> str:
+        """Function to add a new task to the task manager.
+
+        Args:
+            title (str): title of the task
+            description (str): description of the task
+
+        Returns:
+            str: The title of the added task
+        """
         task = Task(title, description, status="Incomplete")
         self.tasks.append(task)
+        self.data_manager.save_data(self.tasks)
         return title
 
-    def delete_task(self, title):
+    def delete_task(self, title) -> bool:
+        """Function to delete a task from the task manager.
+
+        Args:
+            title (str): title of the task to delete
+
+        Returns:
+            bool: True if the task was deleted, False otherwise
+        """
         for task in self.tasks:
             if task.title == title:
                 self.tasks.remove(task)
+                self.data_manager.remove_task(title)
                 return True
         return False
 
-    def mark_task_complete(self, title):
+    def mark_task_complete(self, title) -> bool:
+        """Function to mark a task as complete.
+
+        Args:
+            title (str): title of the task to mark as complete
+
+        Returns:
+            bool: True if the task was marked as complete, False otherwise
+        """
         for task in self.tasks:
             if task.title == title:
                 task.mark_tasks_complete()
+                self.data_manager.save_data(self.tasks)
                 return True
         return False

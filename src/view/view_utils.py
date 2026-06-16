@@ -1,8 +1,14 @@
 def show_message(message):
+    """Function to show a message
+
+    Args:
+        message (str): The message to display
+    """
     print(message)
 
 
 def show_menu():
+    """Function to show the main menu of the application."""
     print("\nMenu :")
     print("1. Add tasks.")
     print("2. Mark task as complete.")
@@ -12,4 +18,5 @@ def show_menu():
 
 
 def line_break():
+    """Function to print a line break"""
     print("\n")
