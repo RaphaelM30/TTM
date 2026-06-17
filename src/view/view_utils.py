@@ -14,7 +14,8 @@ def show_menu():
     print("2. Mark task as complete.")
     print("3. View all tasks.")
     print("4. Delete task.")
-    print("5. Exit.")
+    print("5. Change task priority.")
+    print("6. Exit.")
 
 
 def line_break():

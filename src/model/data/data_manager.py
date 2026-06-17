@@ -26,6 +26,7 @@ class DataManager:
                 "title": task.title,
                 "description": task.description,
                 "status": task.status,
+                "priority": task.priority,
             }
             tasks_list.append(dict_task)
 
@@ -50,6 +51,7 @@ class DataManager:
                         title=task_data["title"],
                         description=task_data["description"],
                         status=task_data["status"],
+                        priority=task_data["priority"],
                     )
                     tasks.append(task)
 

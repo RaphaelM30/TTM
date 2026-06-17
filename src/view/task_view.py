@@ -1,5 +1,6 @@
 from .messages import Messages
 from .view_utils import show_message
+from prettytable import PrettyTable
 
 
 class TaskView:
@@ -17,7 +18,10 @@ class TaskView:
 
         show_message(Messages.TASK_LIST)
 
-        for i, task in enumerate(tasks, start=1):
-            print(
-                f"{i}. Title: '{task.title}', Description: '{task.description}', Status: '{task.status}'"
-            )
+        table = PrettyTable()
+        table.field_names = ["Title", "Description", "Priority", "Status"]
+
+        for task in tasks:
+            table.add_row([task.title, task.description, task.priority, task.status])
+
+        print(table)

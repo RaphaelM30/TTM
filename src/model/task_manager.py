@@ -9,18 +9,19 @@ class TaskManager:
         self.tasks = DataManager("src/model/data/database.json").load_data()
         self.data_manager = DataManager("src/model/data/database.json")
 
-    def add_task(self, title, description) -> str:
+    def add_task(self, title, description, priority) -> str:
         """Function to add a new task to the task manager.
 
         Args:
             title (str): title of the task
             description (str): description of the task
+            priority (int): priority of the task
 
         Returns:
             str: The title of the added task
         """
         if title and description:
-            task = Task(title, description, status="Incomplete")
+            task = Task(title, description, priority, status="Incomplete")
             self.tasks.append(task)
             self.data_manager.save_data(self.tasks)
             return title
@@ -55,6 +56,24 @@ class TaskManager:
         for task in self.tasks:
             if task.title == title:
                 task.mark_tasks_complete()
+                self.data_manager.save_data(self.tasks)
+                return True
+        return False
+
+    def change_task_priority(self, title, new_priority) -> bool:
+        """Function to change the priority of a task.
+
+        Args:
+            title (str): title of the task to change priority
+            new_priority (int): new priority value
+
+        Returns:
+            bool: True if the task's priority was changed, False otherwise
+        """
+
+        for task in self.tasks:
+            if task.title == title:
+                task.priority = new_priority
                 self.data_manager.save_data(self.tasks)
                 return True
         return False

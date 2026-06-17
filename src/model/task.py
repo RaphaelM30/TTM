@@ -7,6 +7,7 @@ class Task:
 
     title: str
     description: str
+    priority: int = 1
     status: str = "Incomplete"
 
     def mark_tasks_complete(self):

@@ -22,7 +22,8 @@ def main():
                 line_break()
                 title = input("Enter the task title : ")
                 description = input("Enter the task description : ")
-                if task_manager.add_task(title, description):
+                priority = int(input("Enter the task priority (1-5) : "))
+                if task_manager.add_task(title, description, priority):
                     show_message(Messages.TASK_ADDED.format(title=title))
                 else:
                     show_message(Messages.TASK_NOT_ADDED.format(title=title))
@@ -47,6 +48,18 @@ def main():
                     show_message(Messages.TASK_NOT_FOUND.format(title=title))
 
             case 5:
+                title = input("Enter the task title : ")
+                new_priority = int(input("Enter the new priority (1-5) : "))
+                if task_manager.change_task_priority(title, new_priority):
+                    show_message(
+                        Messages.TASK_PRIORITY_CHANGED.format(
+                            title=title, priority=new_priority
+                        )
+                    )
+                else:
+                    show_message(Messages.TASK_NOT_PRIORITY_CHANGED.format(title=title))
+
+            case 6:
                 print("Goodbye ! ")
 
                 return
