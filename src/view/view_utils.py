@@ -11,7 +11,7 @@ def show_menu():
     """Function to show the main menu of the application."""
     print("\nMenu :")
     print("1. Add tasks.")
-    print("2. Mark task as complete.")
+    print("2. Change task status.")
     print("3. View all tasks.")
     print("4. Delete task.")
     print("5. Change task priority.")

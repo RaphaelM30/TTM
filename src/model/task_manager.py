@@ -43,21 +43,30 @@ class TaskManager:
                 return True
         return False
 
-    def mark_task_complete(self, title) -> bool:
-        """Function to mark a task as complete.
+    def change_task_status(self, title, status) -> bool:
+        """Function to change the status of a task.
 
         Args:
-            title (str): title of the task to mark as complete
+            title (str): title of the task to change status
+            status (int): new status value
 
         Returns:
-            bool: True if the task was marked as complete, False otherwise
+            bool: True if the task status was changed, False otherwise
         """
+
+        states = {1: "Complete", 2: "In Progress", 3: "To do"}
+
+        new_status = states.get(status)
+        if not new_status:
+            return False
 
         for task in self.tasks:
             if task.title == title:
-                task.mark_tasks_complete()
+
+                task.status = new_status
                 self.data_manager.save_data(self.tasks)
                 return True
+
         return False
 
     def change_task_priority(self, title, new_priority) -> bool:

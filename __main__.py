@@ -31,10 +31,11 @@ def main():
             case 2:
                 line_break()
                 title = input("Enter the task title : ")
-                if task_manager.mark_task_complete(title):
-                    show_message(Messages.TASK_COMPLETED.format(title=title))
+                status = int(input("Enter the new status (1-Complete, 2-In Progress, 3-To do) : "))
+                if task_manager.change_task_status(title, status):
+                    show_message(Messages.TASK_STATUS_CHANGED.format(title=title))
                 else:
-                    show_message(Messages.TASK_NOT_COMPLETED.format(title=title))
+                    show_message(Messages.TASK_NOT_STATUS_CHANGED.format(title=title))
             case 3:
                 line_break()
                 task_view.show_tasks(task_manager.tasks)
